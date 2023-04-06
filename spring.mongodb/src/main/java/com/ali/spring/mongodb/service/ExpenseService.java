@@ -21,11 +21,21 @@ public class ExpenseService {
         expenseRepository.insert(expense);
     }
 
-    public void updateadd() {
-    }
-
     public List<Expense> getAllExpense() {
         return expenseRepository.findAll();
+    }
+
+
+    public void updateExpense(Expense expense){
+        
+        Expense storedExpense = expenseRepository.findById(expense.getId())
+        .orElseThrow(() -> new RuntimeException(String.format("Cannot Find Expense by ID %s", expense.getId())));
+
+        storedExpense.setExpenseName(expense.getExpenseName());
+        storedExpense.setExpenseCategory(expense.getExpenseCategory());
+        storedExpense.setExpenseAmount(expense.getExpenseAmount());
+
+        expenseRepository.save(expense);
     }
 
     public void getExpenseByName() {
