@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,7 +42,11 @@ public class ExpenseController {
         return ResponseEntity.ok(expenseService.getAllExpense());
     }
 
-    public void getExpenseByName(){}
+    @GetMapping("/{name}")
+    public ResponseEntity<Expense> getExpenseByName(@PathVariable String name){
+        return  ResponseEntity.ok(expenseService.getExpenseByName(name));
+    }
+
 
     public void deleteExpense(){}
     

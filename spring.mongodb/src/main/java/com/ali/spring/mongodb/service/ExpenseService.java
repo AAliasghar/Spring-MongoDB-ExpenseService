@@ -27,7 +27,7 @@ public class ExpenseService {
 
 
     public void updateExpense(Expense expense){
-        
+
         Expense storedExpense = expenseRepository.findById(expense.getId())
         .orElseThrow(() -> new RuntimeException(String.format("Cannot Find Expense by ID %s", expense.getId())));
 
@@ -37,8 +37,11 @@ public class ExpenseService {
 
         expenseRepository.save(expense);
     }
+    
 
-    public void getExpenseByName() {
+    public void getExpenseByName(String name) {
+        expenseRepository.findByName(name)
+        .orElseThrow(() -> new RuntimeException(String.format("Cannot Find Expense by Name %s", name)));
     }
 
     public void deleteExpense() {
