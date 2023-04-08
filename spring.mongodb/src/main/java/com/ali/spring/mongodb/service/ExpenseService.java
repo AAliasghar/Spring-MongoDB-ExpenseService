@@ -44,7 +44,8 @@ public class ExpenseService {
         .orElseThrow(() -> new RuntimeException(String.format("Cannot Find Expense by Name %s", name)));
     }
 
-    public void deleteExpense() {
+    public void deleteExpense(String id) {
+        expenseRepository.deleteById(id);
     }
     
 }
